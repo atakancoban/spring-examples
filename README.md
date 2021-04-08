@@ -3,7 +3,7 @@ Spring-Boot ile ilgili örnekler burada paylaşılacaktır.
 # spring-examples
 
 ## Docker + Mongo Repository ile Rest api örneği
-
+spring-mongo-rest-api
 ## Hazır proje kurulumu
 [1] Docker ile örnekteki image'ı ayağa kaldırmak için 
 Mongo DB ile docker file ayağa kaldırmak için 
