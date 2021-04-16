@@ -1,7 +1,7 @@
 package com.atakancoban.config;
 
 import java.util.Calendar;
-import java.util.Iterator;
+
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
