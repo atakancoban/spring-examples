@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @Configuration
-@EnableJpaRepositories
+@EnableJpaRepositories(basePackages = "com.atakancoban")
 public class Config {
 
    /* @Bean

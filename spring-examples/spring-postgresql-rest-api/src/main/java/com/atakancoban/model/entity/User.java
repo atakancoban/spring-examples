@@ -22,7 +22,7 @@ import lombok.ToString;
 
 
 @Entity
-@Table(name = "user")
+@Table(name = "usertable")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -32,6 +32,7 @@ import lombok.ToString;
 public class User {
 
 	@Id
+	@Column(name = "id")
 	@SequenceGenerator(name = "seq_user",allocationSize = 1)
 	@GeneratedValue(generator = "seq_user",strategy = GenerationType.SEQUENCE)
 	private Long id;

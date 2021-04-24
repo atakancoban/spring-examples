@@ -2,19 +2,19 @@ package com.atakancoban.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
-import com.atakancoban.model.dto.AddressDto;
 import com.atakancoban.model.dto.UserDto;
 import com.atakancoban.model.entity.Address;
 import com.atakancoban.model.entity.User;
-import com.atakancoban.repository.AddressRepository;
 import com.atakancoban.repository.UserRepository;
-import com.sun.nio.sctp.PeerAddressChangeNotification.AddressChangeEvent;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,11 +25,14 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
-	private AddressRepository addressRepository;
+
 
 	@Override
+	@Transactional
 	public UserDto save(UserDto userDto) {
+		
+		//Assert.isNull(userDto.getName(),"username cannot be empty !");
+		
 		User user = new User();
 		user.setName(userDto.getName());
 		user.setSurname(userDto.getSurname());
@@ -51,7 +54,8 @@ public class UserServiceImpl implements UserService {
 
 		});
 
-		return null;
+		userDto.setId(userDb.getId());
+		return userDto;
 	}
 
 	@Override
@@ -60,13 +64,27 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDto getAll(UserDto userDto) {
+	public Page<UserDto> getAll(Pageable pageable) {
 		return null;
 	}
 
 	@Override
-	public Page<UserDto> getAll(Pageable pageable) {
-		return null;
+	public List<UserDto> getAll() {
+		List<User> userlist = userRepository.findAll();
+		List<UserDto> userDtoList = new ArrayList<>();
+		
+		
+		userlist.forEach(element -> {
+			UserDto userDto = new UserDto();
+			userDto.setId(element.getId());
+			userDto.setName(element.getName());
+			userDto.setSurname(element.getSurname());
+			userDto.setAddressList(
+					element.getAddressList().stream().map(Address::getAddress).collect(Collectors.toList()));
+			userDtoList.add(userDto);
+		});
+
+		return userDtoList;
 	}
 
 }

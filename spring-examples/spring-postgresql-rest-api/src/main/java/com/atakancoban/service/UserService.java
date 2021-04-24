@@ -1,5 +1,7 @@
 package com.atakancoban.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,7 +13,7 @@ public interface UserService {
 	
 	void delete(Long id);
 	
-	UserDto getAll(UserDto userDto);
+	List<UserDto> getAll();
 	
 	Page<UserDto> getAll(Pageable pageable);
 	
