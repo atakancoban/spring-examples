@@ -14,6 +14,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 //Dokuman goruntuleme url localhost:8081/swagger-ui.html
 
+//@Api - Rest Controller dokümantasyonu.
+//@ApiModel - Rest API Model dokümantasyonu
+//@ApiModelProperty - Model property dokümantasyonu
+//@ApiOperation - Rest method dokümantasyonu
+//@ApiParam - Method parametresi dokümantasyonu
+//@ApiResponse - Method Response nesnesi icin dokümantasyonu
+
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
