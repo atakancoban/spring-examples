@@ -1,5 +1,7 @@
 package com.atakancoban.api;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,12 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/message")
 public class MessageController {
 
-
-	
-	@RequestMapping("/")
-	public String index() {
-		return "Merhaba ben Atakan Coban.";
-	}
-
-	
+    @GetMapping
+    public ResponseEntity<String> getMessage() {
+        return ResponseEntity.ok("Merhaba JWT. Token eşleşir ise bu requeste izin olur.");
+    }
 }
